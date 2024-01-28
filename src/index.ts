@@ -1,10 +1,16 @@
-import express from 'express';
+import express, { Application, Request, Response, NextFunction } from "express";
 
-const app = express();
+const app: Application = express();
 
-app.get('/',(req,res)=>{
-    res.json("Hello");
+const add = (a: number, b: number): number => a + b;
+
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
+  console.log(add(5, 5));
+  return res.json({
+    message: "Hello",
+  });
 });
 
-app.listen(3001, ()=>{console.log("server is running")});
-
+app.listen(3001, () => {
+  console.log("Server is Running");
+});
